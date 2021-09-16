@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use \App\Models\DrillHole;
+use \App\Models\CollarPosition;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        DrillHole::factory(3)
+        ->has(
+            CollarPosition::factory(100)
+            ->hasReadings(8)
+            , 'surveys')
+        ->create();
     }
 }

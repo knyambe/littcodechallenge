@@ -1,0 +1,72 @@
+<table class="table" *ngIf="(hole$ | async) as surveys">
+    <tfoot>
+        <tr>
+            <td colspan="5" class="bg-light p-3">
+                <ngb-pagination class="float-right"
+                [(page)]="surveys.current_page"
+                [pageSize]="surveys.per_page"
+                [collectionSize]="surveys.total"
+                (pageChange)="onPageChange($event)"></ngb-pagination>
+            </td>
+        </tr>
+    </tfoot>
+    <thead>
+        <tr>
+            <td colspan="5" class="bg-light p-3">
+                <small>Click on the <b>view depth readings</b> link to view related depth readings.</small>
+            </td>
+        </tr>
+        <tr>
+          <th scope="col">Latitude</th>
+          <th scope="col">Longitude</th>
+          <th scope="col">Dip</th>
+          <th scope="col">Azimuth</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let survey of surveys.data">
+          <td>{{survey.latitude}}</td>
+          <td>{{survey.longitude}}</td>
+          <td>{{survey.dip}}</td>
+          <td>{{survey.azimuth}}</td>
+          <td><a href="#" (click)="showDepthDetails(content, survey.readings); (false)">View depth readings</a></td>
+        </tr>
+      </tbody>
+ </table>
+
+ <!--Depths Model-->
+ <ng-template #content let-modal>
+     <div class="modal-header bg-dark text-white">
+         <h5>Depth Readings</h5>
+     </div>
+    <div class="modal-body">
+        <div class="bg-light p-3">
+            <small>Clicking on the confidence rating below will switch the rating between <b>good</b> or <b>poor</b>.</small>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Depth</th>
+                  <th scope="col">Dip</th>
+                  <th scope="col">Azimuth</th>
+                  <th scope="col">Confidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reading of readings">
+                  <td>{{reading.depth}}</td>
+                  <td>{{reading.dip}}</td>
+                  <td>{{reading.azimuth}}</td>
+                  <td>
+                      <span (click)="onToggleAccuracy(reading)"[innerHTML]="reading.accurate | depthAccuracy:reading" ></span>
+                  </td>
+                </tr>
+              </tbody>
+         </table>
+    </div>
+    <div class="modal-footer bg-light">
+      <button type="button" class="btn btn-dark btn-sm" (click)="modal.close('Save click')">Close</button>
+    </div>
+  </ng-template>
+ 

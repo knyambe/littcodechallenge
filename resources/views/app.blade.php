@@ -15,6 +15,8 @@
         @if (isset($ngAssets) && count($ngAssets))
             <link rel="stylesheet" href="/build/{{ $ngAssets['styles'] }}">
         @endif
+    @else
+    <link rel="stylesheet" href="/build/styles.css">
     @endenv
   </head>
   <body>

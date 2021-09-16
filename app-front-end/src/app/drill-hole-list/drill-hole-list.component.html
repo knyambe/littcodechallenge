@@ -1,0 +1,10 @@
+<div class="card mb-3">
+    <div class="card-header text-white bg-info rounded-0">
+        <p class="card-title"><strong>Drill Holes</strong><br><small>Select a drill hole to view survey details</small></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item list-group-item-action" [ngClass]="{'active':active_link==h.id}"  *ngFor="let h of holes">
+            <a href="#" (click)="onclick(h.id); (false)">{{ h.name }}</a>
+        </li>
+    </ul>
+</div>
