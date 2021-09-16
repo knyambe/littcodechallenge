@@ -26,5 +26,10 @@ The frontend server has already been prepackaged, but you may need take some set
 1. From the commandline/terminal navigate to ./app-front-end.
 2. Run `npm install`.
 
+
 ### Running the application
 If you're using the built in Laravel development server, you may run the application via the `php artisan serve` command. Otherwise you may use a server setup of your choice.
+
+### Building the frontend
+1. From the commandline/terminal navigate to ./app-front-end.
+2. Run `npm start`.
